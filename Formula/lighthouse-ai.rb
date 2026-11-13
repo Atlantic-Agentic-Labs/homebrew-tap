@@ -1,9 +1,9 @@
-# Homebrew formula for the `lighthouse` command line.
+# Homebrew formula for the `lighthouse-ai` command line.
 #
 # Lives in a tap: a public repository `atlantic-agentic-labs/homebrew-tap` with
-# this file at `Formula/lighthouse.rb`. Then:
+# this file at `Formula/lighthouse-ai.rb`. Then:
 #
-#   brew install atlantic-agentic-labs/tap/lighthouse
+#   brew install atlantic-agentic-labs/tap/lighthouse-ai
 #
 # `virtualenv_install_with_resources` is the standard way Homebrew packages a
 # Python command line (it is how `awscli`, `httpie` and `ansible` are
@@ -11,16 +11,21 @@
 # command does not depend on whatever is in the person's PATH and cannot be
 # broken by another `pip install`.
 #
+# The command is `lighthouse-ai`. `lighthouse` is also Google Lighthouse and the
+# Ethereum Lighthouse client (homebrew-core), so this formula links only
+# `lighthouse-ai` into bin. It replaces the formula `lighthouse` of 0.17.0 (the
+# tap's formula_renames.json maps the old name to this one).
+#
 # The `url` and `sha256` below are placeholders: the release job
 # `homebrew-tap` writes the real ones, and the resources, into the tap's copy
 # (installers/formula.py). This file is the template.
-class Lighthouse < Formula
+class LighthouseAi < Formula
   include Language::Python::Virtualenv
 
   desc "LightHouse from the command line: agents, runs, spend and connectors"
   homepage "https://docs.atlanticagenticlabs.com/cli/"
-  url "https://files.pythonhosted.org/packages/52/f7/1cd98d72f5f9613e430f243dbefb2abed75d2943f8067ec1e77fd586c094/lighthouse_cli-0.17.0.tar.gz"
-  sha256 "9b43034d588eb9e0c620944a0113f71af7654602a2b8dd2ec2fcb91ff33a5a93"
+  url "https://files.pythonhosted.org/packages/e8/7e/c0a405ead3b0bb1e8924c4a075e41c2f38465ff66d7190f5bebd31a952b6/lighthouse_cli-0.17.1.tar.gz"
+  sha256 "8547af76c184d6f575cce9df7db77a33f00de4378faf7950b5ea0202d742f201"
   license "Apache-2.0"
   head "https://gitlab.com/atlantic-agentic-labs/engine/lighthouse.git", branch: "main"
 
@@ -122,15 +127,20 @@ class Lighthouse < Formula
 
   def install
     virtualenv_install_with_resources
+    # The package also ships the deprecated `lighthouse` alias (removed in
+    # 0.18.0). It is not linked, so it never conflicts with homebrew-core's
+    # `lighthouse`.
+    rm(bin/"lighthouse") if (bin/"lighthouse").exist?
   end
 
   test do
-    assert_match "lighthouse #{version}", shell_output("#{bin}/lighthouse --version")
+    assert_match "lighthouse-ai #{version}", shell_output("#{bin}/lighthouse-ai --version")
+    assert_path_not_exist bin/"lighthouse"
     # Exit 2 with no subcommand, and the usage on standard error.
-    output = shell_output("#{bin}/lighthouse 2>&1", 2)
+    output = shell_output("#{bin}/lighthouse-ai 2>&1", 2)
     assert_match "login", output
     # No host anywhere is exit 2 and says so, without reaching the network.
     assert_match "no tenant host is set",
-                 shell_output("#{bin}/lighthouse whoami --json 2>&1", 2)
+                 shell_output("#{bin}/lighthouse-ai whoami --json 2>&1", 2)
   end
 end

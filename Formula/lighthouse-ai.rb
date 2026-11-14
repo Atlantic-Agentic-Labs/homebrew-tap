@@ -24,8 +24,8 @@ class LighthouseAi < Formula
 
   desc "LightHouse from the command line: agents, runs, spend and connectors"
   homepage "https://docs.atlanticagenticlabs.com/cli/"
-  url "https://files.pythonhosted.org/packages/c2/8c/3f293f4af7e5a71187b87391c8e4f079d6dbe545808aa8845656e2620f21/lighthouse_cli-0.18.1.tar.gz"
-  sha256 "99a540af0915d69167ce96821dde61b025cdf109c49d828d5cc8c36229cb247e"
+  url "https://files.pythonhosted.org/packages/84/5a/689214aa9c392af53343595115117970f9baf8ce05dfdabf1220914b2fe8/lighthouse_cli-0.18.2.tar.gz"
+  sha256 "4348ea3fcfccc2cd376b25c3a6b93cf1cbb0a94a2b3132ef7d03614bbf400dfd"
   license "Apache-2.0"
   head "https://gitlab.com/atlantic-agentic-labs/engine/lighthouse.git", branch: "main"
 

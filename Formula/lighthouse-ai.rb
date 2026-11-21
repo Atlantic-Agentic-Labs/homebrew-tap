@@ -24,8 +24,8 @@ class LighthouseAi < Formula
 
   desc "LightHouse from the command line: agents, runs, spend and connectors"
   homepage "https://docs.atlanticagenticlabs.com/cli/"
-  url "https://files.pythonhosted.org/packages/11/3b/9d8a9ba7ec20528ec4f517df706bbdb8d4fa4302d949f528226cdf37c2db/lighthouse_cli-0.22.2.tar.gz"
-  sha256 "907e3458761cf8b05553a88d7f275fd95ad068e3725d81b59bdeb292466396d7"
+  url "https://files.pythonhosted.org/packages/7e/e1/91abf1feebd417c45e8643e3e76360e6cc66b499d486599d6ad4a0a8ed12/lighthouse_cli-0.23.0.tar.gz"
+  sha256 "11609409c9651f4e55bb105e5da707a004148a9ad2163d8735a49d1094b323ff"
   license "Apache-2.0"
   head "https://gitlab.com/atlantic-agentic-labs/engine/lighthouse.git", branch: "main"
 
@@ -45,8 +45,8 @@ class LighthouseAi < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/fd/11/b524cbd9bbdaca58608e4cf4053fd463417549e1959fa8d3aa18319f9555/certifi-2026.10.23.tar.gz"
-    sha256 "a9895e6e2758b371e0545e321a3a8fd1fcfd9829ada8824a936dfb16aaaf36cd"
+    url "https://files.pythonhosted.org/packages/51/33/4cd27639502f010084bcef7a2036391dd637439901341ce1a530f36f6e51/certifi-2026.11.20.tar.gz"
+    sha256 "af1cb240a8133f105aa52684a3a3258339d7f2fd0bd4e2812698ff5cf5588c4e"
   end
 
   resource "cffi" do
